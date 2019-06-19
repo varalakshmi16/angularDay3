@@ -1,0 +1,313 @@
+6)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+       {{ title }}</h1><br>
+      click the button:<br>
+      <button type="submit" (click)='clickme()'>OK</button><br>
+      the button has been clicked {{count}} times
+</div>
+----------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Task1";
+  count:number=0;
+  clickme(){
+    this.count++;
+  }
+   }
+--------------------------------------------------------------------------------------------------------------------------------------
+7)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+       {{ title }}</h1><br>
+      
+      <button type="submit" (click)='clickme()'>True</button>
+      <button type="submit" (click)='clickme2()'>False</button><br><br>
+    <div *ngIf="show">Show this only if "show" is true</div>
+</div>
+--------------------------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task17";
+  show=false;
+  clickme(){
+    this.show=true;
+  }
+  clickme2(){
+    this.show=false;
+  }
+   }
+-------------------------------------------------------------------------------------------------------------------------------------------
+8)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+       {{ title }}</h1><br>
+      <input type="text" id="txt" #txt placeholder="Type Something">
+      <button type="submit" (click)='validate(txt.value)'>Submit</button><br>
+      
+    {{str}}
+</div>
+------------------------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task18";
+ public str:string;
+  validate(value){
+ var alpha=/^[a-zA-Z]*$/;
+
+ if(value.match(alpha)){
+this.str="The String Contains only Alphabets";
+ }
+ if(!value.match(alpha)){
+  this.str="The String Contains number or special characters";
+   }
+   if(value.length==0){
+     this.str="Type Something in the text box";
+   }
+}
+   }
+-------------------------------------------------------------------------------------------------------------------------------------------------
+9)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+       {{ title }}</h1><br>
+     Enter the String: <input type="text" id="txt" #txt placeholder="Type Something"><br>
+      <button type="submit" (click)='validate(txt.value)'>change</button><br>
+      
+    {{str}}
+</div>
+---------------------------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task18";
+ public str:string;
+ count:any;
+  validate(value){
+ 
+this.count=0;
+ for(var i=0;i<value.length;i++){
+   if(value[i]==='a'||value[i]==='e'||value[i]==='i'||value[i]==='o'||value[i]==='u'||value[i]==='A'||value[i]==='E'||value[i]==='O'||value[i]==='I'||value[i]==='U'){
+     this.count++;
+   }
+   this.str=this.count;
+ }
+ 
+   if(value.length==0){
+     this.str="Type Something";
+   }
+  
+}
+
+   }
+-------------------------------------------------------------------------------------------------------------------------------------------------
+1)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+   
+   
+    <h1>{{ title }}</h1><br>
+       
+    
+    <select (change)='product($event)'>
+           <option>Hp</option>
+           <option>Dell</option>
+           <option>Lenovo</option>
+    </select>
+   
+   
+    <div *ngIf="show">you have selected:{{name}}<br>
+        <h4>Product Details:</h4>  
+
+
+
+        <table class="TFtable" align="center">  
+<tr >   
+    <th>Name</th> <th>Store</th>  <th>Price</th> <th>Model</th>  
+</tr>  
+ <tr  *ngFor="let Prod of ProductDetails">  
+    <td>{{Prod.title}}</td>  
+    <td>{{Prod.store}}</td>  
+    <td>{{Prod.price}}</td>  
+    <td>{{Prod.model}}</td>  
+</tr>  
+  </table>  
+ </div>
+
+
+
+</div>
+--------------------------------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task18";
+  name:string;
+  show=false;
+  public Products = [  
+    {Name:'Hp', title: 'HP ENVY Laptop - 15t touch', price: '1099', store: 'Best Buy', model: '15-BS013DX' },  
+    { Name: 'Dell', title: 'Dell Laptop', price: '700', store: 'Amazon', model: 'I7378-3000SLV-PUS' },  
+    { Name: 'Lenovo', title: 'Lenovo Touch-Screen Laptop', price: '670', store: 'Target', model: '81A40025US' },  
+    { Name: 'Hp', title: 'HP OfficeJet Pro 6978 All-in-One Printer', price: '100', store: 'Target', model: 'T0F29A#B1H' },  
+    { Name: 'Hp', title: 'HP Laptop - 17t touch ', price: '420', store: 'Target', model: '1EZ78AV_1' },  
+    { Name: 'Dell', title: 'Dell - XPS 27" Touch-Screen All-In-One', price: '670', store: 'Target', model: 'BBY-311C3FX' },  
+    { Name: 'Dell', title: 'Dell - Inspiron 21.5" Touch-Screen All-In-One', price: '469.90', store: 'Target', model: 'I3265-A067BLK-PUS' },  
+    { Name: 'Lenovo', title: 'Lenovo - 520-24AST 23.8" Touch-Screen All-In-One', price: '679.99', store: 'Target', model: 'F0D3000EUS' },  
+    { Name: 'Dell', title: 'Dell - XPS 2-in-1 13.3" Touch-Screen Laptop', price: '1199.99', store: 'Target', model: 'XPS9365-7086SLV-PUS' }  
+   ];  
+   public ProductDetails: object = [];  
+ 
+ 
+   product(event:any){
+this.show=true;
+this.name=event.target.value;
+let obj = this.Products.filter(m => m.Name == this.name);  
+  this.ProductDetails = obj;  
+ 
+ }
+ 
+  
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+10)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+   
+   
+    <h1>{{ title }}</h1><br>
+       
+    Enter the String:<input type="text" id="txt" #txt placeholder="Type Something"><br> 
+    Enter the subString:<input type="text" id="sub" #sub placeholder="Type Something"><br> 
+    <button (click)='validate(txt.value,sub.value)'>change</button>
+<div *ngIf="show">{{name}}</div>
+
+</div>
+----------------------------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task18";
+  name:string;
+  show=false;
+  validate(value,value1){
+    if(value.match(value1))
+    {
+    this.name="true";
+    this.show=true;
+    }
+    else
+    {
+      this.name="false";
+      this.show=true;
+    }
+    if(value.length==0 && value1.length==0)
+    {
+      this.name="Type something";
+      this.show=true;
+  }
+}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+12)import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task18";
+  n1:any;
+ validate(value,value1)
+ {
+this.n1=value*value1;
+if(value>=2 || value1>=2)
+{
+  this.n1="enter a valid number";
+}
+ }
+
+ validate1(value,value1)
+ {
+this.n1=+value + +value1;
+if(value1==value)
+{
+  this.n1=value;
+}
+if(value>=2 || value1>=2)
+{
+  this.n1="enter a valid number";
+}
+}
+}
+-------------------------
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+   
+   
+    <h1>{{ title }}</h1><br>
+       
+    Enter the Number:<input type="number" id="num1" #num1 ><br> 
+    Enter the Number:<input type="number" id="num2" #num2 ><br> 
+    <button (click)='validate(num1.value,num2.value)'>AND</button>
+    <button (click)='validate1(num1.value,num2.value)'>OR</button><br>
+    {{n1}}
+
+</div>
+-----------------------------------------------------------------------------------------------------------------------------------------------
+11)<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+   
+   
+    <h1>{{ title }}</h1><br>
+       
+    Enter the First date:<input type="text" id="num1" #num1 placeholder="Type Something"><br> 
+    Enter the Second date:<input type="text" id="num2" #num2 placeholder="Type Something"><br> 
+    <button (click)='validate(num1.value,num2.value)'>change</button>
+   
+    {{n1}}
+
+</div>
+----------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.styl']
+})
+export class AppComponent {
+  title="Welcome to Task18";
+  n1:any;
+ validate(value,value1)
+ {
+var first=new Date(value);
+var second=new Date(value1);
+var diff=Math.abs((first.valueOf()-second.valueOf())/(1000*3600*24));
+this.n1=diff;
+}
+}
